@@ -1,4 +1,4 @@
-import { isDate, isObject } from './utils'
+import { isDate, isObject, isPlainObject } from './utils'
 
 /**
  * tansfrom params following url
@@ -35,7 +35,7 @@ export const builURL = (url: string, params?: any): string => {
     values.forEach(val => {
       if (isDate(val)) {
         val = val.toISOString()
-      } else if (isObject(val)) {
+      } else if (isPlainObject(val)) {
         val = JSON.stringify(val)
       }
       parts.push(`${key}= ${val}`)

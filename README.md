@@ -8,3 +8,9 @@
 - 支持请求的取消
 - JSON 数据的自动转换
 - 客户端防止 XSRF
+
+# demo
+
+```bash
+npm run dev
+```
