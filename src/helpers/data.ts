@@ -8,3 +8,15 @@ export const transformRequestData = (data: any): any => {
 
   return data
 }
+
+export const transformReponse = (data: any): any => {
+  if (typeof data === 'string') {
+    try {
+      data = JSON.parse(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  return data
+}
