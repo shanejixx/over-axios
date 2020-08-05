@@ -9,7 +9,7 @@ const xhr = (config: AxiosRequestConfig): AxiosPromise => {
 
     const xhr = new XMLHttpRequest()
 
-    xhr.open(method.toUpperCase(), url, true)
+    xhr.open(method.toUpperCase(), url as string, true)
 
     if (timeout) {
       xhr.timeout = timeout
