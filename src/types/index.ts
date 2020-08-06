@@ -13,7 +13,7 @@ export type Method =
   | 'OPTIONS'
   | 'head'
   | 'HEAD'
-  // | 'patch'
+  | 'patch'
   | 'PATCH'
 
 export interface AxiosRequestConfig {
