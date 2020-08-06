@@ -2,12 +2,12 @@ import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types'
 import xhr from './xhr'
 import { builURL } from '../helpers/url'
 import { transformRequestData, transformReponse } from '../helpers/data'
-import { processHeaders } from '../helpers/header'
+import { processHeaders, flattenHeaders } from '../helpers/header'
 
 const transformURL = (config: AxiosRequestConfig): string => {
   const { url, params } = config
 
-  return builURL(url, params)
+  return builURL(url as string, params)
 }
 
 const transformRequest = (config: AxiosRequestConfig): any => {
@@ -30,6 +30,7 @@ const processConfig = (config: AxiosRequestConfig): void => {
   // 处理 header 的时候依赖了 data，所以要在处理请求 body 数据之前处理请求 header
   config.headers = transformHeaders(config)
   config.data = transformRequest(config)
+  config.headers = flattenHeaders(config.headers, config.method!)
 }
 
 const axios = (config: AxiosRequestConfig): AxiosPromise => {
