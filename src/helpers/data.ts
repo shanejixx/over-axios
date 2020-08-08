@@ -1,4 +1,3 @@
-import { format } from 'path'
 import { isPlainObject } from './utils'
 
 export const transformRequestData = (data: any): any => {
