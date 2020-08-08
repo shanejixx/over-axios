@@ -53,6 +53,7 @@ export interface AxiosError extends Error {
 export interface Axios {
   defaults: AxiosRequestConfig
   interceptors: Interceptors
+  create: any
 
   request<T = any>(config: AxiosRequestConfig): AxiosPromise<T>
 
@@ -91,4 +92,8 @@ export interface ResolvedFn<T = any> {
 
 export interface RejectedFn {
   (val: any): any
+}
+
+export interface AxiosStatic extends AxiosInstance {
+  create(config?: AxiosRequestConfig): AxiosInstance
 }
