@@ -27,6 +27,12 @@ const transformReponseData = (res: AxiosResponse): AxiosResponse => {
   return res
 }
 
+const throwIfCancellationRequested = (config: AxiosRequestConfig): void => {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested()
+  }
+}
+
 const processConfig = (config: AxiosRequestConfig): void => {
   config.url = transformURL(config)
   // 处理 header 的时候依赖了 data，所以要在处理请求 body 数据之前处理请求 header
@@ -37,6 +43,7 @@ const processConfig = (config: AxiosRequestConfig): void => {
 }
 
 const axios = (config: AxiosRequestConfig): AxiosPromise => {
+  throwIfCancellationRequested(config)
   processConfig(config)
 
   return xhr(config).then(res => {

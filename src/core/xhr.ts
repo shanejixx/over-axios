@@ -5,7 +5,7 @@ import { request } from 'http'
 
 const xhr = (config: AxiosRequestConfig): AxiosPromise => {
   return new Promise((resolve, reject) => {
-    const { url, method = 'get', data = null, headers, responseType, timeout } = config
+    const { url, method = 'get', data = null, headers, responseType, timeout, cancelToken } = config
 
     const xhr = new XMLHttpRequest()
 
@@ -13,6 +13,13 @@ const xhr = (config: AxiosRequestConfig): AxiosPromise => {
 
     if (timeout) {
       xhr.timeout = timeout
+    }
+
+    if (cancelToken) {
+      cancelToken.promise.then(reason => {
+        xhr.abort()
+        reject(reason)
+      })
     }
 
     xhr.ontimeout = function handleTimeout() {
