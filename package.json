@@ -1,11 +1,11 @@
 {
-  "name": "over-axios",
+  "name": "over-ts-axios",
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/over-axios.umd.js",
-  "module": "dist/over-axios.es5.js",
-  "typings": "dist/types/over-axios.d.ts",
+  "main": "dist/over-ts-axios.umd.js",
+  "module": "dist/over-ts-axios.es5.js",
+  "typings": "dist/types/over-ts-axios.d.ts",
   "files": [
     "dist"
   ],
@@ -33,7 +33,8 @@
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "precommit": "lint-staged",
     "travis-deploy-once": "travis-deploy-once",
-    "dev": "node examples/server.js"
+    "dev": "node examples/server.js",
+    "pub": "sh release.sh"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
